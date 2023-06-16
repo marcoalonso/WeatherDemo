@@ -20,8 +20,19 @@ class WeatherViewModel {
         webservice.getWeatherData(cityName: cityName) { weatherData, error in
             if let weatherData = weatherData {
                 completion(weatherData, nil)
-            } else {
-                completion(nil, error)
+            }
+            
+            if error != nil {
+                switch error as? NetworkError {
+                case .badRequest:
+                    completion(nil, NetworkError.badRequest)
+                case .badURL:
+                    completion(nil, NetworkError.badURL)
+                case .decodingError:
+                    completion(nil, NetworkError.decodingError)
+                case .none:
+                    break
+                }
             }
         }
     }

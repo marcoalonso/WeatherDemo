@@ -22,6 +22,8 @@ public class Webservice {
         let urlString = "https://api.weatherapi.com/v1/current.json?key=9745357b64764a1c926173930223105&q=\(cityName)&aqi=no"
         
         guard let url = URL(string: urlString) else {
+            print("Debug: Error bad url \(NetworkError.badURL)")
+
             completionHandler(nil, NetworkError.badURL)
             return
         }
@@ -38,6 +40,8 @@ public class Webservice {
                 if let weatherData = self.parseJSON(weatherData: safeData) {
                  completionHandler(weatherData, nil)
                 }
+            } else {
+                completionHandler(nil, NetworkError.decodingError)
             }
         }.resume()
         
