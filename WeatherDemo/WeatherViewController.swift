@@ -10,6 +10,7 @@ import UIKit
 class WeatherViewController: UIViewController {
     
     @IBOutlet weak var namePlaceLabel: UILabel!
+    @IBOutlet weak var temperatureSegmentedControl: UISegmentedControl!
     @IBOutlet weak var confitionLabel: UILabel!
     @IBOutlet weak var cityNameSearch: UITextField!
     @IBOutlet weak var imageWeather: UIImageView!
@@ -19,6 +20,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var temperature: UILabel!
     
     let viewModel = WeatherViewModel(webservice: Webservice.shared)
+
     
     var weatherData: WeatherModel?
     
@@ -46,7 +48,13 @@ class WeatherViewController: UIViewController {
                     print("Debug: cleanURL \(cleanURL)")
 
                     self.imageWeather.loadFrom(url: "https://\(cleanURL)")
-                    self.temperature.text = "\(weatherObj.current.temp_c)°C"
+                    
+                    if self.temperatureSegmentedControl.selectedSegmentIndex == 0 {
+                        self.temperature.text = "\(weatherObj.current.temp_c)°C"
+                    } else {
+                        self.temperature.text = "\(weatherObj.current.temp_f)°F"
+                    }
+                    
                     self.lastUpdated.text = "last updated: \(weatherObj.current.last_updated)"
                 }
             }

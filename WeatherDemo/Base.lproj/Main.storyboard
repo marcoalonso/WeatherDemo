@@ -105,6 +105,7 @@
                         <outlet property="locationTimeLabel" destination="ZlK-Ev-gV5" id="kWy-Rd-wnG"/>
                         <outlet property="namePlaceLabel" destination="dcC-DQ-QHT" id="YuE-RS-g4y"/>
                         <outlet property="temperature" destination="CIv-46-WQE" id="UAm-7o-UA1"/>
+                        <outlet property="temperatureSegmentedControl" destination="yCX-An-Br6" id="TAx-P9-Bd7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
